@@ -9,7 +9,8 @@ public class DamegeReceive : AllBeh
     [SerializeField] protected int hp = 1;
     [SerializeField] protected int hpMax = 2;
     [SerializeField] protected bool isDead = false;
-
+    public int HP => hp;
+    public int HPMax=>hpMax;
     protected override void OnEnable()
     {
         this.Reborn();
@@ -53,7 +54,7 @@ public class DamegeReceive : AllBeh
         this.CheckIsDead();
     }
 
-    protected virtual bool IsDead()
+    public virtual bool IsDead()
     {
         return this.hp <= 0;
     }

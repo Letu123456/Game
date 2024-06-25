@@ -10,8 +10,8 @@ public class StoneCtrl : AllBeh
     [SerializeField] protected StoneDespawn stoneDespawn;
     public StoneDespawn StoneDespawn { get => stoneDespawn; }
 
-    [SerializeField] protected StoneSO stoneSo;
-    public StoneSO StoneSO { get => stoneSo; }
+    [SerializeField] protected ShootAbleSO shootAbleSO;
+    public ShootAbleSO ShootAbleSO { get => shootAbleSO; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -35,9 +35,9 @@ public class StoneCtrl : AllBeh
     }
     protected virtual void LoadStoneSO()
     {
-        if (this.stoneSo != null) return;
-        string resPath = "Stone/" + transform.name;
-        this.stoneSo = Resources.Load<StoneSO>(resPath);
+        if (this.shootAbleSO != null) return;
+        string resPath = "ShootAble/Stone/" + transform.name;
+        this.shootAbleSO = Resources.Load<ShootAbleSO>(resPath);
         Debug.LogWarning(transform.name + ": LoadStoneSO " + resPath, gameObject);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -10,6 +11,9 @@ public class ItemLooter : AllBeh
     [SerializeField] protected Inventory inventory;
     [SerializeField] protected SphereCollider _collider;
     [SerializeField] protected Rigidbody _rigidbody;
+    [SerializeField] TextMeshProUGUI pointUI;
+    int point = 0;
+
 
     protected override void LoadComponent()
     {
@@ -54,6 +58,8 @@ public class ItemLooter : AllBeh
         if (this.inventory.AddItem(itemCode, 1))
         {
             itemPickupable.Picked();
+            point++;
+            pointUI.text = "Score:" + point.ToString();
         }
     }
 }

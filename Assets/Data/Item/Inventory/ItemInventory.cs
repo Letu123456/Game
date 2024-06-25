@@ -8,6 +8,6 @@ public class ItemInventory
 {
     public ItemProfileSO itemProfile;
     public int itemCount = 0;
-    public int maxStack = 7;
+    public int maxStack = 100;
     public int levelUpgrade = 0;
 }

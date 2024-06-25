@@ -15,7 +15,7 @@ MonoBehaviour:
   itemCode: 2
   itemType: 1
   itemName: no-name
-  defaultMaxStack: 7
+  defaultMaxStack: 100
   upgradeLevel:
   - ingredient:
     - itemProfile: {fileID: 11400000, guid: 4ed1142df87c3e44e933d7635097f5fa, type: 2}

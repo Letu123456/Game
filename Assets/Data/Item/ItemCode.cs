@@ -7,4 +7,5 @@ public enum ItemCode
     NoItem =0,
     attribute=1,
     gold=2,
+    chickenFoot=3,
 }

@@ -48,23 +48,24 @@ public abstract class Spawner : AllBeh
     public virtual Transform Spawn(string prefabName,Vector3 spawnPos, Quaternion spawnRot)
     {
 
-        Transform bullet = this.getPrefabName(prefabName);
-        if(bullet == null) {
+        Transform prefab = this.getPrefabName(prefabName);
+        if(prefab == null) {
             Debug.LogWarning("Prefab not found");
             return null;
         }
 
        
-        return this.Spawn(bullet,spawnPos,spawnRot);
+        return this.Spawn(prefab,spawnPos,spawnRot);
     }
 
     public virtual Transform Spawn(Transform prefab, Vector3 spawnPos, Quaternion spawnRot)
     {
-        Transform newBullet = this.GetObjectFromBool(prefab);
+        Transform newPrefab = this.GetObjectFromBool(prefab);
 
-        newBullet.SetPositionAndRotation(spawnPos, spawnRot);
-        newBullet.parent = this.holder;
-        return newBullet;
+        newPrefab.SetPositionAndRotation(spawnPos, spawnRot);
+        newPrefab.SetParent(this.holder);
+        spawnedCount++;
+        return newPrefab;
     }
     public virtual Transform GetObjectFromBool(Transform pre)
     {
@@ -84,6 +85,7 @@ public abstract class Spawner : AllBeh
     {
         this.poolObj.Add(obj);
         obj.gameObject.SetActive(false);
+        spawnedCount--; 
     }
 
     public virtual Transform getPrefabName(string prefabName)

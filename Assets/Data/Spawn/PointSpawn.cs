@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PointSpawn : AllBeh
+public  class PointSpawn : AllBeh
 {
     [SerializeField] protected List<Transform> points;
 

@@ -10,6 +10,9 @@ public class BulletCtrl : AllBeh
     [SerializeField] protected BulletDespawn bulletDespawn;
     public BulletDespawn BulletDespawn { get => bulletDespawn; }
 
+    [SerializeField] protected Transform shotter;
+    public Transform Shotter => shotter;
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -29,6 +32,11 @@ public class BulletCtrl : AllBeh
         if (this.bulletDespawn != null) return;
         this.bulletDespawn = transform.GetComponentInChildren<BulletDespawn>();
         Debug.Log(transform.name + ": LoadBulletDespawn", gameObject);
+    }
+
+    public virtual void Setshotter(Transform shotter)
+    {
+        this.shotter = shotter;
     }
 
 }

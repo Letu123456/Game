@@ -19,4 +19,9 @@ public class FollowTaget : AllBeh
         if (target == null) return;
         transform.position=Vector3.Lerp(transform.position, target.position, speed*Time.fixedDeltaTime);
     }
+
+    public virtual void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
 }

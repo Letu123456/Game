@@ -32,7 +32,7 @@ public class StoneDameRecei : DamegeReceive
     {
         Vector3 dropPos = transform.position;
         Quaternion dropRot = transform.rotation;
-        DropSpawn.Instance.Drop(this.stoneCtrl.StoneSO.dropList, dropPos, dropRot);
+        DropSpawn.Instance.Drop(this.stoneCtrl.ShootAbleSO.dropList, dropPos, dropRot);
     }
     protected virtual void OnDeadFX()
     {
@@ -47,7 +47,7 @@ public class StoneDameRecei : DamegeReceive
     }
     public override void Reborn()
     {
-        this.hpMax = this.stoneCtrl.StoneSO.hpMax;
+        this.hpMax = this.stoneCtrl.ShootAbleSO.hpMax;
         base.Reborn();
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public abstract class Shooting : AllBeh
 {
     // Start is called before the first frame update
     [SerializeField] protected bool isShooting = false;
     //[SerializeField] protected Transform bullet;
-    [SerializeField] protected float Delay = 3.0f;
+    [SerializeField] protected float Delay = 0.2f;
     [SerializeField] protected float time=0f;
     
     private void Update()
@@ -30,12 +30,11 @@ public class Shooting : MonoBehaviour
         Transform newBullet = BulletSpawner.Instance.Spawn(BulletSpawner.bulletOne, spawnPos, spawnRot);
         if (newBullet == null) return;
         newBullet.gameObject.SetActive(true);
+        BulletCtrl buletCtrl = newBullet.GetComponent<BulletCtrl>();
+        buletCtrl.Setshotter(transform.parent);
     }
 
-    protected virtual bool IsShooting()
-    {
-        this.isShooting = SingletonMouse.Instance.Onfight == 1;
-        return this.isShooting;
-    }
+    protected abstract bool IsShooting();
+    
 
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -7,8 +8,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class ItemPickupable : ItemAbtract
 {
     [SerializeField] protected SphereCollider _collider;
-
-
+    
     public static ItemCode StringToItemCode(string itemName)
     {
         return (ItemCode)System.Enum.Parse(typeof(ItemCode), itemName);
@@ -37,5 +37,7 @@ public class ItemPickupable : ItemAbtract
     public virtual void Picked()
     {
         this.ItemCtr.ItemDespawn.DespawnObject();
+       
+
     }
 }
