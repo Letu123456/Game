@@ -60,6 +60,12 @@ public class ItemLooter : AllBeh
             itemPickupable.Picked();
             point++;
             pointUI.text = "Score:" + point.ToString();
+            if(itemCode.ToString() == "chickenFoot")
+            {
+                ShipHPSlide shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
+                shipHPSlide.setAddHP(5);
+            }
+            
         }
     }
 }
