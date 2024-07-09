@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class ItemLooter : AllBeh
@@ -12,9 +13,12 @@ public class ItemLooter : AllBeh
     [SerializeField] protected SphereCollider _collider;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] TextMeshProUGUI pointUI;
+    private Shield shield;
+    ShipHPSlide shipHPSlide;
+
     int point = 0;
 
-
+   
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -23,6 +27,11 @@ public class ItemLooter : AllBeh
         this.LoadRigidbody();
     }
 
+    private void Start()
+    {
+        shield = GetComponent<Shield>();
+        shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
+    }
     protected virtual void LoadInventory()
     {
         if (this.inventory != null) return;
@@ -59,13 +68,21 @@ public class ItemLooter : AllBeh
         {
             itemPickupable.Picked();
             point++;
-            pointUI.text = "Score:" + point.ToString();
             if(itemCode.ToString() == "chickenFoot")
             {
-                ShipHPSlide shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
+                
                 shipHPSlide.setAddHP(5);
+            }else if (itemCode.ToString() == "gold")
+            {
+                point++;
             }
-            
+            else
+            {
+                
+                shield.ActivateShield();
+            }
+            pointUI.text = "Score:" + point.ToString();
+
         }
     }
 }
