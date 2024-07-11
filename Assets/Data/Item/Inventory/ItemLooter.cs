@@ -18,6 +18,7 @@ public class ItemLooter : AllBeh
 
     int point = 0;
 
+    PlaySounds sounds;
    
     protected override void LoadComponent()
     {
@@ -31,6 +32,7 @@ public class ItemLooter : AllBeh
     {
         shield = GetComponent<Shield>();
         shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
+        sounds = FindAnyObjectByType<PlaySounds>();
     }
     protected virtual void LoadInventory()
     {
@@ -68,6 +70,7 @@ public class ItemLooter : AllBeh
         {
             itemPickupable.Picked();
             point++;
+            sounds.playLootItem();
             if(itemCode.ToString() == "chickenFoot")
             {
                 

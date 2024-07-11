@@ -7,6 +7,9 @@ public class PlaySounds : MonoBehaviour
 
     public AudioSource gunshot;
     public AudioSource lootItem;
+
+    private bool canPlaySound = true;
+    private float cooldownTime = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +18,19 @@ public class PlaySounds : MonoBehaviour
 
     public void playGunShot()
     {
-        gunshot.Play();
+        if (canPlaySound)
+        {
+            gunshot.Play();
+            StartCoroutine(SoundCooldown());
+        }
+        
+    }
+
+    private IEnumerator SoundCooldown()
+    {
+        canPlaySound = false;
+        yield return new WaitForSeconds(cooldownTime);
+        canPlaySound = true;
     }
 
     public void playLootItem()
