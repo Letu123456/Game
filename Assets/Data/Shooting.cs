@@ -10,13 +10,17 @@ public abstract class Shooting : AllBeh
     //[SerializeField] protected Transform bullet;
     [SerializeField] protected float Delay = 0.2f;
     [SerializeField] protected float time=0f;
-    
+
+    PlaySounds sounds;
     private void Update()
     {
         IsShooting();
         Shoot();
     }
-
+    private void Start()
+    {
+        sounds = FindAnyObjectByType<PlaySounds>();
+    }
     protected virtual void Shoot()
     {
         if (!isShooting) return;
@@ -32,6 +36,8 @@ public abstract class Shooting : AllBeh
         newBullet.gameObject.SetActive(true);
         BulletCtrl buletCtrl = newBullet.GetComponent<BulletCtrl>();
         buletCtrl.Setshotter(transform.parent);
+
+        sounds.playGunShot();
     }
 
     protected abstract bool IsShooting();
