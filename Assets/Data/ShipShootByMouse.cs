@@ -11,11 +11,11 @@ public class ShipShootByMouse :Shooting
     }
     protected override bool IsShooting()
         {
-            this.isShooting = SingletonMouse.Instance.Onfight == 1;
+        this.isShooting = SingletonMouse.Instance.Onfight == 1;
         if (this.isShooting)
-        {
+            {
             sounds.playGunShot();
-        }
-            return this.isShooting;
+            }
+        return this.isShooting;
         }
 }

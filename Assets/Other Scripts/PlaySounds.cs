@@ -10,7 +10,7 @@ public class PlaySounds : MonoBehaviour
 
     private bool canPlaySound = true;
     private float cooldownTime = 0.1f;
-    // Start is called before the first frame update
+
     void Start()
     {
         
@@ -38,7 +38,6 @@ public class PlaySounds : MonoBehaviour
         lootItem.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
