@@ -28,7 +28,7 @@ public class ItemLooter : AllBeh
         this.LoadRigidbody();
     }
 
-    private void Start()
+    protected override void Start()
     {
         shield = GetComponent<Shield>();
         shipHPSlide = FindAnyObjectByType<ShipHPSlide>();

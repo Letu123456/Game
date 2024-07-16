@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipShootByMouse :Shooting
 {
     PlaySounds sounds;
-    private void Start()
+   protected override void Start()
     {
         sounds = FindAnyObjectByType<PlaySounds>();
     }

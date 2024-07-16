@@ -6,7 +6,7 @@ public class ShootAbleDameRecei : DamegeReceive
 {
     [Header("Junk")]
     [SerializeField] protected ShootAbleCtrl shootAbleCtrl;
-
+   
     protected override void LoadComponent()
     {
         base.LoadComponent();
