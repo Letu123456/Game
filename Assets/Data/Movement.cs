@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class Movement : AllBeh
 {
     // Start is called before the first frame update
-    [SerializeField] protected Vector3 worldPos;
-    [SerializeField] protected float Speed = 1f;
+    public Vector3 worldPos;
+    public float Speed = 1f;
     [SerializeField] protected float Distance = 1f;
     [SerializeField] protected float  minDistance= 10f;
 
-
-
-
+    protected override void Start()
+    {
+       
+    }
 
     protected virtual void FixedUpdate()
     {

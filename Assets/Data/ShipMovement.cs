@@ -2,25 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowShip : Movement
+public class ShipMovement : Movement
 {
-    [SerializeField] protected Transform Ship;
 
+    GameData data = null;
+    protected override void Start()
+    {
+        data = MainMenu.gameData;
+        LoadGame();
+    }
+    public void LoadGame()
+    {   
+        if (data == null) return;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        worldPos = position;
+        Speed = data.Speed;
+    }
     protected override void FixedUpdate()
     {
-       getPosShip();
-       
+       getPosMouse();
         base.FixedUpdate();
     }
 
-
-    protected virtual void SetPosShip(Transform ship)
+    protected virtual void getPosMouse()
     {
-        this.Ship = ship;
-    }
-    protected virtual void getPosShip()
-    {
-        this.worldPos = this.Ship.position;
+        this.worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition); 
         this.worldPos.z = 0f; 
     }
 

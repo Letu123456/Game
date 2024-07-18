@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class ShipShootByMouse :Shooting
 {
-        protected override bool IsShooting()
+    PlaySounds sounds;
+   protected override void Start()
+    {
+        sounds = FindAnyObjectByType<PlaySounds>();
+    }
+    protected override bool IsShooting()
         {
-            this.isShooting = SingletonMouse.Instance.Onfight == 1;
-            return this.isShooting;
+        this.isShooting = SingletonMouse.Instance.Onfight == 1;
+        if (this.isShooting)
+            {
+            sounds.playGunShot();
+            }
+        return this.isShooting;
         }
 }

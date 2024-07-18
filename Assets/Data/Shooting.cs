@@ -8,9 +8,10 @@ public abstract class Shooting : AllBeh
     // Start is called before the first frame update
     [SerializeField] protected bool isShooting = false;
     //[SerializeField] protected Transform bullet;
-    [SerializeField] public float Delay = 0.8f;
+    [SerializeField] protected float Delay = 8f;
     [SerializeField] protected float time=0f;
-    
+
+
     private void Update()
     {
         IsShooting();

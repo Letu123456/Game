@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -12,11 +14,13 @@ public class ItemLooter : AllBeh
     [SerializeField] protected SphereCollider _collider;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] TextMeshProUGUI pointUI;
-    [SerializeField] protected ShipCtrl shipCtrl;
-    public GameObject blackHole;
-    int point = 0;
+    private Shield shield;
+    ShipHPSlide shipHPSlide;
 
-
+    public int point = 0;
+    public GameData data = null;
+    PlaySounds sounds;
+   
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -25,6 +29,20 @@ public class ItemLooter : AllBeh
         this.LoadRigidbody();
     }
 
+    protected override void Start()
+    {
+        data = MainMenu.gameData;
+        LoadGame();
+        shield = GetComponent<Shield>();
+        shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
+        sounds = FindAnyObjectByType<PlaySounds>();
+        pointUI.text = "Score:" + point.ToString();
+    }
+    public void LoadGame()
+    {
+        if (data == null) return;
+        point = data.point;
+    }
     protected virtual void LoadInventory()
     {
         if (this.inventory != null) return;
@@ -57,23 +75,26 @@ public class ItemLooter : AllBeh
         if (itemPickupable == null) return;
 
         ItemCode itemCode = itemPickupable.GetItemCode();
-
         if (this.inventory.AddItem(itemCode, 1))
         {
             itemPickupable.Picked();
             point++;
-            pointUI.text = "Score:" + point.ToString();
-            if(point > 10) {
-
-                blackHole.SetActive(true);
+            sounds.playLootItem();
+            if(itemCode.ToString() == "chickenFoot")
+            {
+                
+                shipHPSlide.setAddHP(5);
+            }else if (itemCode.ToString() == "gold")
+            {
+                point++;
             }
+            else
+            {
+                
+                shield.ActivateShield();
+            }
+            pointUI.text = "Score:" + point.ToString();
 
         }
-
-        if(itemCode == ItemCode.attribute)
-        {
-            shipCtrl.Shooting.Delay -= 0.2f;
-        }
-
     }
 }
