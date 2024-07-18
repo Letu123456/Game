@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
 public class ItemLooter : AllBeh
@@ -13,13 +12,11 @@ public class ItemLooter : AllBeh
     [SerializeField] protected SphereCollider _collider;
     [SerializeField] protected Rigidbody _rigidbody;
     [SerializeField] TextMeshProUGUI pointUI;
-    private Shield shield;
-    ShipHPSlide shipHPSlide;
-
+    [SerializeField] protected ShipCtrl shipCtrl;
+    public GameObject blackHole;
     int point = 0;
 
-    PlaySounds sounds;
-   
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -28,12 +25,6 @@ public class ItemLooter : AllBeh
         this.LoadRigidbody();
     }
 
-    private void Start()
-    {
-        shield = GetComponent<Shield>();
-        shipHPSlide = FindAnyObjectByType<ShipHPSlide>();
-        sounds = FindAnyObjectByType<PlaySounds>();
-    }
     protected virtual void LoadInventory()
     {
         if (this.inventory != null) return;
@@ -66,26 +57,23 @@ public class ItemLooter : AllBeh
         if (itemPickupable == null) return;
 
         ItemCode itemCode = itemPickupable.GetItemCode();
+
         if (this.inventory.AddItem(itemCode, 1))
         {
             itemPickupable.Picked();
             point++;
-            sounds.playLootItem();
-            if(itemCode.ToString() == "chickenFoot")
-            {
-                
-                shipHPSlide.setAddHP(5);
-            }else if (itemCode.ToString() == "gold")
-            {
-                point++;
-            }
-            else
-            {
-                
-                shield.ActivateShield();
-            }
             pointUI.text = "Score:" + point.ToString();
+            if(point > 10) {
+
+                blackHole.SetActive(true);
+            }
 
         }
+
+        if(itemCode == ItemCode.attribute)
+        {
+            shipCtrl.Shooting.Delay -= 0.2f;
+        }
+
     }
 }

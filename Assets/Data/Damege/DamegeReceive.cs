@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DamegeReceive : AllBeh
 {
-    public Shield playerShield;
     [Header("Damage Receiver")]
     [SerializeField] protected SphereCollider sphereCollider;
     [SerializeField] protected int hp = 1;
@@ -49,21 +48,8 @@ public class DamegeReceive : AllBeh
     public virtual void Deduct(int deduct)
     {
         if (this.isDead) return;
-        if (playerShield != null)
-        {
-            if (playerShield.IsShieldActive)
-            {
-            }
-            else
-            {
-                this.hp -= deduct;
-            }
-        }
-        else
-        {
-            this.hp -= deduct;
-        }
 
+        this.hp -= deduct;
         if (this.hp < 0) this.hp = 0;
         this.CheckIsDead();
     }
@@ -84,5 +70,4 @@ public class DamegeReceive : AllBeh
     {
         //For override
     }
-
 }

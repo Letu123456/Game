@@ -8,6 +8,7 @@ public class GameManage : MonoBehaviour
 {
     public static bool isGameOver;
     public GameObject gameOverScreen;
+    
     // Start is called before the first frame update
     void Start()
     {

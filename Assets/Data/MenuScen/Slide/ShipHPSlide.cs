@@ -12,11 +12,11 @@ public class ShipHPSlide : BaseSlide
         UpdateShipHP();
         HPShow();
     }
-    private int addHP = 0;
+
     protected virtual void HPShow()
     {
         float hpPercent = currenHP / maxHP;
-        if(hpPercent == 0)
+        if(hpPercent ==0)
         {
             GameManage.isGameOver = true;
         }
@@ -40,23 +40,12 @@ public class ShipHPSlide : BaseSlide
     
 
     
-    
+
     protected virtual void UpdateShipHP()
     {
-        
-        if (addHP > 0)
-        {
-            ShipCtrl.Instance.DamegeReceive.Add(addHP);
-        }
         int hpmax = ShipCtrl.Instance.DamegeReceive.HPMax;
         int hp = ShipCtrl.Instance.DamegeReceive.HP;
         SetMaxHP(hpmax);
         SetCurrenHP(hp);
-        addHP = 0;
-    }
-
-    public void setAddHP(int value)
-    {
-        this.addHP = value;
     }
 }

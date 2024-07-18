@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootAbleDameRecei : DamegeReceive
+public class ShootAbleDameRecei2 : DamegeReceive
 {
     [Header("Junk")]
     [SerializeField] protected ShootAbleCtrl shootAbleCtrl;
-
+    public GameObject youWinScreen;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -24,8 +24,10 @@ public class ShootAbleDameRecei : DamegeReceive
     {
         this.OnDeadFX();
         OnDeadDrop();
-        this.shootAbleCtrl.Despawn.DespawnObject();
-       // Destroy(transform.parent.gameObject);
+        //this.shootAbleCtrl.Despawn.DespawnObject();
+        Destroy(transform.parent.gameObject);
+        youWinScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     protected virtual void OnDeadDrop()

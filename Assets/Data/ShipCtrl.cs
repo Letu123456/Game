@@ -9,6 +9,8 @@ public class ShipCtrl : ShootAbleCtrl
     [SerializeField] protected Inventory inventory;
     public Inventory Inventory => inventory;
 
+    [SerializeField] protected Shooting shoot;
+    public Shooting Shooting => shoot;
 
     protected override void Awake()
     {
