@@ -6,7 +6,19 @@ public class ShootAbleDameRecei : DamegeReceive
 {
     [Header("Junk")]
     [SerializeField] protected ShootAbleCtrl shootAbleCtrl;
-   
+    public GameData data = null;    
+    protected override void Start()
+    {
+        data = MainMenu.gameData;
+        LoadGame();
+    }
+    public void LoadGame()
+    {
+        if (data == null) return;
+        hp = data.hp;
+        hpMax = data.maxhp;
+    }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -45,9 +57,8 @@ public class ShootAbleDameRecei : DamegeReceive
     {
         return ExplosionSpawn.Exp1;
     }
-    public override void Reborn()
-    {
-        this.hpMax = this.shootAbleCtrl.ShootAbleSO.hpMax;
-        base.Reborn();
-    }
+
+
+  
+
 }

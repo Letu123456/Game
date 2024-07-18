@@ -67,7 +67,7 @@ public class SpawnRandom : AllBeh
         //Transform prefab = this.ctrl.Spawn.RandomPrefab();
         Transform obj = this.ctrl.Spawn.Spawn(ChickenSpawner.Chicken,pos, rot);
 
-        float scaleFactor = 1f +(0.2f*difficulty.currentDifficulty);
+        float scaleFactor = 1f +(0.1f*difficulty.currentDifficulty);
         obj.localScale = new Vector3(scaleFactor,scaleFactor,scaleFactor);
 
         obj.gameObject.SetActive(true);

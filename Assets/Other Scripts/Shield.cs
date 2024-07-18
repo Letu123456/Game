@@ -1,20 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
     public GameObject shieldSprite; 
-    private bool isShieldActive = false;
-    private float shieldTime = 5f; 
+    public bool isShieldActive = false;
+    public float shieldTime = 5f; 
     private Coroutine shieldCoroutine;
+    public GameData data = null;
 
 
+    private void Start()
+    {
+        data = MainMenu.gameData;
+        LoadGame();
+    }
+    public void LoadGame()
+    {
+        if (data == null) return;
+        if (data.intShieldActive == 1)
+        {
+            ActivateShield();
+        }
+    }
     public bool IsShieldActive
     {
         get { return isShieldActive; }
     }
- 
+    
+
     public void ActivateShield()
     {
         if (isShieldActive)

@@ -2,16 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowMouse : Movement
+public class ShipMovement : Movement
 {
-    // Start is called before the first frame update
-    
-    
 
+    GameData data = null;
+    protected override void Start()
+    {
+        data = MainMenu.gameData;
+        LoadGame();
+    }
+    public void LoadGame()
+    {   
+        if (data == null) return;
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        worldPos = position;
+        Speed = data.Speed;
+    }
     protected override void FixedUpdate()
     {
        getPosMouse();
-       
         base.FixedUpdate();
     }
 
