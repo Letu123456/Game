@@ -6,10 +6,10 @@ public class DespawnByDistance : Despawn
 {
     [SerializeField ] protected float LimitDistance = 30f;
     [SerializeField] protected float countDistance = 0f;
-    [SerializeField] protected Camera camera;
+    [SerializeField] protected Camera camera1;
 
 
-    protected virtual void FixedUpdate() 
+    protected override void FixedUpdate() 
         {
         this.Despawning();
         }
@@ -21,24 +21,24 @@ public class DespawnByDistance : Despawn
 
     protected virtual void LoadCamera()
     {
-        if (this.camera != null) return;
-        this.camera = Transform.FindObjectOfType<Camera>();
+        if (this.camera1 != null) return;
+        this.camera1 = Transform.FindObjectOfType<Camera>();
 
     }
 
-    protected virtual void Despawning()
+    protected override void Despawning()
     {
         if(!CanDespawn()) return;
         DespawnObject();
     }
 
-    public virtual void DespawnObject()
+    public override void DespawnObject()
     {
         Destroy(transform.parent.gameObject);
     }
     protected override bool CanDespawn()
     {
-        this.countDistance = Vector3.Distance(transform.position, camera.transform.position);
+        this.countDistance = Vector3.Distance(transform.position, camera1.transform.position);
         if (this.countDistance > LimitDistance) return true;
         return false;
     }
