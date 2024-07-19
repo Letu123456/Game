@@ -32,4 +32,12 @@ public class ShipCtrl : ShootAbleCtrl
         this.inventory = transform.GetComponentInChildren<Inventory>();
         Debug.Log(transform.name + ": LoadInventory", gameObject);
     }
+
+    public void TakeDamage(int damage)
+    {
+        if (this.DamegeReceive != null)
+        {
+            this.DamegeReceive.Deduct(damage);
+        }
+    }
 }
