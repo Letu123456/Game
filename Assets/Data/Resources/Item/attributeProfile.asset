@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: attributeProfile
   m_EditorClassIdentifier: 
   itemCode: 1
-  itemType: 1
+  itemType: 2
   itemName: no-name
   defaultMaxStack: 100
   upgradeLevel:

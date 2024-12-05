@@ -2,23 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootAbleDameRecei : DamegeReceive
+public class ShootAbleDameRecei2 : DamegeReceive
 {
     [Header("Junk")]
     [SerializeField] protected ShootAbleCtrl shootAbleCtrl;
-    public GameData data = null;    
-    protected override void Start()
-    {
-        data = MainMenu.gameData;
-        LoadGame();
-    }
-    public void LoadGame()
-    {
-        if (data == null) return;
-        hp = data.hp;
-        hpMax = data.maxhp;
-    }
-
+    public GameObject youWinScreen;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -36,8 +24,10 @@ public class ShootAbleDameRecei : DamegeReceive
     {
         this.OnDeadFX();
         OnDeadDrop();
-        this.shootAbleCtrl.Despawn.DespawnObject();
-       // Destroy(transform.parent.gameObject);
+        //this.shootAbleCtrl.Despawn.DespawnObject();
+        Destroy(transform.parent.gameObject);
+        youWinScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     protected virtual void OnDeadDrop()
@@ -57,8 +47,9 @@ public class ShootAbleDameRecei : DamegeReceive
     {
         return ExplosionSpawn.Exp1;
     }
-
-
-  
-
+    public override void Reborn()
+    {
+        this.hpMax = this.shootAbleCtrl.ShootAbleSO.hpMax;
+        base.Reborn();
+    }
 }

@@ -10,8 +10,8 @@ public class BulletCtrl : AllBeh
     [SerializeField] protected BulletDespawn bulletDespawn;
     public BulletDespawn BulletDespawn { get => bulletDespawn; }
 
-    [SerializeField] protected Transform shotter;
-    public Transform Shotter => shotter;
+    [SerializeField] protected Transform? shotter;
+    public Transform? Shotter => shotter;
 
     protected override void LoadComponent()
     {
@@ -34,7 +34,7 @@ public class BulletCtrl : AllBeh
         Debug.Log(transform.name + ": LoadBulletDespawn", gameObject);
     }
 
-    public virtual void Setshotter(Transform shotter)
+    public virtual void Setshotter(Transform? shotter)
     {
         this.shotter = shotter;
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent (typeof(Rigidbody))]
-public class BulletImpart : BulletAbstract
+public class BulletImpart2 : BulletAbstract
 {
 
     [SerializeField] protected SphereCollider sphere;
     [SerializeField] protected Rigidbody rigibody;
-    
+    [SerializeField] protected Transform Boss;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -37,7 +37,8 @@ public class BulletImpart : BulletAbstract
 
     protected virtual void OnTriggerEnter(Collider orther)
     {
-       
+        if (orther.CompareTag("Boss")) return;
+        if (orther.transform.parent == this.Boss) return;
         if (orther.transform.parent == this.bullCtrl.Shotter) return;
         this.bullCtrl.DamageSender.Send(orther.transform);
         //createImpact(orther);
